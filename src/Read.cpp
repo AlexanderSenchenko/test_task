@@ -4,32 +4,27 @@
 #include "include/Error.h"
 #include <string>
 
-#include <stdio.h>
-#include <string>
-#include <iostream>
-
 Read::Read(char** opts)
 {
-    in = new std::ifstream(*opts);
-    std::string line;
+    if (*opts == nullptr) {
+        this->state = new Error("test: expected name file");
+        return;
+    }
 
-    if (in->is_open()) {
-        // std::cout << opts[0] << std::endl;
-        if (std::string(*(++opts)) == "-m") {
-            // std::cout << opts[0] << std::endl;
-            std::string opt(*(++opts));
-            // std::cout << opts[0] << std::endl;
-            if (opt == "words") {
-                this->state =  new Word(opts + 1, in);
-            } else if (opt == "checksum") {
+    in = new std::ifstream(*opts);
+
+    if (in->is_open()) {        
+        if (*(opts + 1) != nullptr && std::string(*(++opts)) == "-m") {
+            ++opts;
+            if (*opts != nullptr && std::string(*opts) == "words") {
+                this->state =  new Word(++opts, in);
+            } else if (*opts != nullptr && std::string(*opts) == "checksum") {
                 this->state = new Checksum(in);
             } else {
-                this->state = new Error("test: missing option operand");
-                delete in;
+                this->state = new Error("test: missing option command(words or checksum)");
             }
         } else {
-            this->state = new Error("test: missing option operand");
-            delete in;
+            this->state = new Error("test: missing option operand(-m)");
         }
     } else {
         this->state = new Error("File not found");
@@ -43,4 +38,6 @@ void Read::act()
 
 Read::~Read()
 {
+    delete state;
+    delete in;
 }

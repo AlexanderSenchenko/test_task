@@ -11,6 +11,4 @@ void Error::act()
     std::cout << err_msg << std::endl;
 }
 
-Error::~Error()
-{
-}
+Error::~Error() {}

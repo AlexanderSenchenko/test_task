@@ -7,6 +7,7 @@ class Info : public State
 {
 public:
     virtual void act();
+    ~Info();
 };
 
 #endif

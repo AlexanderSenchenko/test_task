@@ -6,13 +6,13 @@ Word::Word(char** opts, std::ifstream* in)
 {
     std::string opt(*opts);
     if (opt == "-v") {
-        if (*(opts + 1) == nullptr) {
+        if (*(opts + 1) != nullptr) {
             state = new Count(std::string(*(++opts)), in);
         } else {
-            state = new Error("test: missing option operand");
+            state = new Error("test: missing option operand(search word)");
         }
     } else {
-        state = new Error("test: missing option operand");
+        state = new Error("test: missing option operand(-v)");
     }
 }
 
@@ -23,4 +23,5 @@ void Word::act()
 
 Word::~Word()
 {
+    delete state;
 }

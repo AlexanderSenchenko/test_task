@@ -16,6 +16,7 @@ void Checksum::act()
     }
 }
 
-Checksum::~Checksum()
-{
+Checksum::~Checksum() {
+    if (in != NULL)
+        delete in;
 }

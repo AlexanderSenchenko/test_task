@@ -9,3 +9,5 @@ void Info::act()
     std::cout << "\t-f" << std::endl;
     std::cout << "\t-h" << std::endl;
 }
+
+Info::~Info() {}
