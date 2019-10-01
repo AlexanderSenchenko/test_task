@@ -9,10 +9,10 @@ int main(int argc, char** argv)
         std::cout << "Try 'test -h' for more information." << std::endl;
         exit(EXIT_FAILURE);
     } else {
-        std::cout << *(argv + 1) << std::endl;
+        // std::cout << *(argv + 1) << std::endl;
     }
 
-    Context obj(new Info);
+    Context obj(argv + 1);
     obj.StateChanged();
 
     return 0;

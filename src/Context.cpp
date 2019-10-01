@@ -1,13 +1,20 @@
 #include "include/Context.h"
+#include "include/Info.h"
+#include "include/Read.h"
 
-Context::Context(State* state)
+Context::Context(char** opts)
 {
-    this->state = state;
+    std::string opt(*opts);
+    if (opt == "-h") {
+        this->state = new Info;
+    } else if (opt == "-f") {
+        this->state = new Read(opts + 1);
+    }
 }
 
 void Context::StateChanged()
 {
-    state->act();
+    this->state->act();
 }
 
 Context::~Context()

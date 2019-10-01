@@ -8,7 +8,7 @@ class Context
 private:
     State* state;
 public:
-    Context(State*);
+    Context(char**);
     void StateChanged();
     ~Context();
 };
