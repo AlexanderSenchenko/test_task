@@ -5,12 +5,14 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 class Word : public State
 {
 private:
     State *state;
 public:
-    Word(char**, std::ifstream*);
+    Word(char**, ifstream*);
     virtual void act();
     ~Word();
 };

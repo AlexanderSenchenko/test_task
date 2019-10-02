@@ -1,8 +1,8 @@
-#include "include/Count.h"
+#include "../include/StateCount.h"
 #include <iostream>
 #include <string.h>
 
-Count::Count(std::string search_word, std::ifstream* in)
+Count::Count(string search_word, ifstream* in)
 {
     this->in = in;
     this->search_word = search_word;
@@ -10,28 +10,28 @@ Count::Count(std::string search_word, std::ifstream* in)
 
 void Count::act()
 {
-    std::string line;
+    string line;
     const char* delim = " ";
     char *cstr, *savedptr, *token;
     int count = 0;
 
-    while (getline(*this->in, line)) {
+    while (getline(*in, line)) {
         cstr = new char[line.length() + 1];
         strcpy(cstr, line.c_str());
 
         token = strtok_r(cstr, delim, &savedptr);
-        if (std::string(token) == this->search_word)
+        if (string(token) == search_word)
             count++;
 
         while ((token = strtok_r(NULL, delim, &savedptr)) != nullptr) {
-            if (std::string(token) == this->search_word)
+            if (string(token) == search_word)
                 count++;
         }
 
         delete[] cstr;
     }
 
-    std::cout << count << std::endl;
+    cout << "Number of words \"" + search_word + "\" in a file: " << count << endl;
 }
 
 Count::~Count() {}

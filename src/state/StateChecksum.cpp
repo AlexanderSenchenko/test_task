@@ -1,13 +1,10 @@
-#include "include/Checksum.h"
+#include "../include/StateChecksum.h"
 #include <string>
-
-#include <iostream>
 #include <stdio.h>
 
-// #define MAX_NUMBER 0x100000000
 #define MAX_NUMBER 0xFFFFFFFF
 
-Checksum::Checksum(std::ifstream* in)
+Checksum::Checksum(ifstream* in)
 {
     this->in = in;
 }
@@ -34,7 +31,7 @@ void Checksum::act()
         csum = 0;
     }
 
-    printf("Checksum = %x\n", (uint32_t) buf);
+    printf("Checksum = 0x%x\n", (uint32_t) buf);
 }
 
 Checksum::~Checksum() {

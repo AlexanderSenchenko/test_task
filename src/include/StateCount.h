@@ -5,13 +5,15 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 class Count : public State
 {
 private:
-    std::ifstream* in;
-    std::string search_word;
+    ifstream* in;
+    string search_word;
 public:
-    Count(std::string, std::ifstream*);
+    Count(string, ifstream*);
     virtual void act();
     ~Count();
 };

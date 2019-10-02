@@ -4,11 +4,13 @@
 #include "State.h"
 #include <fstream>
 
+using namespace std;
+
 class Read : public State
 {
 private:
     State* state;
-    std::ifstream* in;
+    ifstream* in;
 public:
     Read(char**);
     virtual void act();

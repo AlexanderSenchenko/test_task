@@ -4,12 +4,14 @@
 #include "State.h"
 #include <string>
 
+using namespace std;
+
 class Error : public State
 {
 private:
-    std::string err_msg;
+    string err_msg;
 public:
-    Error(std::string);
+    Error(string);
     virtual void act();
     ~Error();
 };

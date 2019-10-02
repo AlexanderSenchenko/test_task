@@ -4,12 +4,14 @@
 #include "State.h"
 #include <fstream>
 
+using namespace std;
+
 class Checksum : public State
 {
 private:
-    std::ifstream* in;
+    ifstream* in;
 public:
-    Checksum(std::ifstream*);
+    Checksum(ifstream*);
     virtual void act();
     ~Checksum();
 };
